@@ -24,15 +24,22 @@ pipeline {
               //  sh 'curl -uadmin:password -T target/bio*.jar "http://54.91.248.155:8081/artifactory/artifactory/"'
            // }
       //  }
-        stage('image build'){
+        stage('ECR Connection'){
             steps{
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 737047471328.dkr.ecr.us-east-1.amazonaws.com '
+            }
+        }
+     stage('image build'){
+            steps{
                 sh 'docker build -t alphonsedev .'
             }
         }
-        stage('push image'){
+        stage('Tag image'){
             steps{
                 sh 'docker tag alphonsedev:latest 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:${BUILD_ID}'
+            }
+         stage('push image'){
+            steps{
                 sh 'docker push 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:${BUILD_ID}'
             }
         }
