@@ -5,7 +5,7 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy static assets from the current directory to the container
-COPY . /usr/share/nginx/html
+COPY . /usr/share/nginx/
 
 # Expose port 80
 EXPOSE 80
