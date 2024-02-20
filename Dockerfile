@@ -5,7 +5,7 @@ FROM httpd:2.4
 #COPY ./my-httpd.conf /usr/local/apache2/conf/httpd.conf
 
 # Copy the content of your site into the document root
-COPY ./html/ /usr/local/apache2/htdocs/
+COPY ./.html*/ /usr/local/apache2/htdocs/
 
 # Expose port 80
 EXPOSE 80
