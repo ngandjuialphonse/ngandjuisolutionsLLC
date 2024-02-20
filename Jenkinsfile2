@@ -1,49 +1,29 @@
 pipeline {
-    agent any 
-    //tools {
-      //  maven 'M2_HOME'
- //   }
-
-    stages{
-       // stage('sonarqube scan'){
-            //steps{
-              //  withSonarQubeEnv('sonarQube'){ 
-            //  sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ngandjuialphonse_llc'
-              //sh 'mvn sonar:sonar'
-         //   }
-       //   }
-      //  }
-    //    stage('all maven commands'){
-        //    steps{
-       //         sh 'mvn clean test compile install package'
-      //      }
-     //   }
-        //stage('upload artifact'){
-           // steps{
-                 
-              //  sh 'curl -uadmin:password -T target/bio*.jar "http://54.91.248.155:8081/artifactory/artifactory/"'
-           // }
-      //  }
-        stage('ECR Connection'){
-            steps{
-                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 737047471328.dkr.ecr.us-east-1.amazonaws.com '
+    agent any
+    
+    stages {
+        stage('ECR Connection') {
+            steps {
+                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 737047471328.dkr.ecr.us-east-1.amazonaws.com'
             }
         }
-     stage('image build'){
-            steps{
+
+        stage('Image Build') {
+            steps {
                 sh 'docker build -t alphonsedev .'
             }
         }
-        stage('Tag image'){
-            steps{
+
+        stage('Tag Image') {
+            steps {
                 sh 'docker tag alphonsedev:latest 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:${BUILD_ID}'
             }
-         stage('push image'){
-            steps{
+        }
+
+        stage('Push Image') {
+            steps {
                 sh 'docker push 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:${BUILD_ID}'
             }
         }
-        
     }
-  }
 }
