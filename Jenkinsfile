@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    
     stages {
         stage('ECR Connection') {
             steps {
@@ -23,6 +22,16 @@ pipeline {
         stage('Push Image') {
             steps {
                 sh 'docker push 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:${BUILD_ID}'
+            }
+        }
+        
+        stage('Deploy to EKS') {
+            steps {
+                script {
+                    withKubeConfig([credentialsId: 'my-kubeconfig', serverUrl: '']) {
+                        sh 'kubectl apply -f deployment.yaml' // Assuming your manifest file is named deployment.yaml
+                    }
+                }
             }
         }
     }
