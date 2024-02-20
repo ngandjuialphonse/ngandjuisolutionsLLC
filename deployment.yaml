@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: eltechengineer
-        image: 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:23
+        image: 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:${LASTEST}
         ports:
         - containerPort: 80
 ---
