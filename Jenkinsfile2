@@ -1,23 +1,23 @@
 pipeline {
     agent any 
-    tools {
-        maven 'M2_HOME'
-    }
+    //tools {
+      //  maven 'M2_HOME'
+ //   }
 
     stages{
-        stage('sonarqube scan'){
-            steps{
-                withSonarQubeEnv('sonarQube'){ 
-              sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ngandjuialphonse_llc'
+       // stage('sonarqube scan'){
+            //steps{
+              //  withSonarQubeEnv('sonarQube'){ 
+            //  sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ngandjuialphonse_llc'
               //sh 'mvn sonar:sonar'
-            }
-          }
-        }
-        stage('all maven commands'){
-            steps{
-                sh 'mvn clean test compile install package'
-            }
-        }
+         //   }
+       //   }
+      //  }
+    //    stage('all maven commands'){
+        //    steps{
+       //         sh 'mvn clean test compile install package'
+      //      }
+     //   }
         //stage('upload artifact'){
            // steps{
                  
