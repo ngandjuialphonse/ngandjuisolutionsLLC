@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eltechengineer-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: eltechengineer
+  template:
+    metadata:
+      labels:
+        app: eltechengineer
+    spec:
+      containers:
+      - name: eltechengineer
+        image: 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:23
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eltechengineer-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: eltechengineer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
