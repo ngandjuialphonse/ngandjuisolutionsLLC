@@ -1,18 +1,14 @@
-# Use an official Node runtime as a parent image
-FROM node:14
+# Use nginx alpine base image
+FROM nginx:alpine
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+# Remove default nginx static assets
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy package.json and install dependencies
-COPY package.json ./
-RUN npm install
+# Copy static assets from the current directory to the container
+COPY . /usr/share/nginx/html
 
-# Bundle app source inside the Docker image
-COPY . .
-
-# Make port 80 available to the world outside this container
+# Expose port 80
 EXPOSE 80
 
-# Define the command to run your app
-CMD [ "npm", "start" ]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
