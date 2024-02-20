@@ -1,12 +1,18 @@
-# Use the official image as a parent image
-FROM httpd:2.4
+# Use an official Node runtime as a parent image
+FROM node:14
 
-# Optional: Update the default Apache configuration
-#COPY ./my-httpd.conf /usr/local/apache2/conf/httpd.conf
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Copy the content of your site into the document root
-COPY ./html/index.html /usr/local/apache2/htdocs/
+# Copy package.json and install dependencies
+COPY package.json ./
+RUN npm install
 
-# Expose port 80
+# Bundle app source inside the Docker image
+COPY . .
+
+# Make port 80 available to the world outside this container
 EXPOSE 80
 
+# Define the command to run your app
+CMD [ "npm", "start" ]
