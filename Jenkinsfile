@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: 'eks_config_file.txt', credentialsId: 'eks_credential', namespace: '', serverUrl: '') {
-                        sh 'kubectl apply -f deployment.yaml' // Assuming your manifest file is named deployment.yaml
+                        sh 'kubectl apply -f deployment.yaml' /// Assuming your manifest file is named deployment.yaml
                     }
                 }
             }
