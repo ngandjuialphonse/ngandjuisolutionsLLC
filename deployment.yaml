@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: alphonsedev-deployment
 spec:
-  replicas: 10
+  replicas: 11
   selector:
     matchLabels:
       app: alphonsedev
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: alphonsedev
-        image: 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:11
+        image: 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:15
         imagePullPolicy: Always
         ports:
         - containerPort: 80
