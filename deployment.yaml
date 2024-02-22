@@ -14,11 +14,7 @@ spec:
     spec:
       containers:
       - name: alphonsedev
-<<<<<<< HEAD
-        image: 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:9
-=======
-        image: 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:8
->>>>>>> 2b58d4df9847fb15517c7d6d78e4d75514d8738d
+        image: 737047471328.dkr.ecr.us-east-1.amazonaws.com/alphonsedev:10
         imagePullPolicy: Always
         ports:
         - containerPort: 80
