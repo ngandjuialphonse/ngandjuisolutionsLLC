@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy to EKS') {
             steps {
                 script {
-                    withKubeConfig(caCertificate: '', clusterName: '', contextName: 'eks_config_file.txt', credentialsId: 'eks_credential', namespace: '', serverUrl: '') {
+                    withKubeConfig(credentialsId: 'eks_credential',) {
                         sh 'kubectl apply -f deployment.yaml' /// Assuming your manifest file is named deployment.yaml
                     }
                 }
