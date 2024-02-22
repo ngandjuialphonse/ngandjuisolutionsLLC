@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: alphonsedev-deployment
 spec:
-  replicas: 10
+  replicas: 5
   selector:
     matchLabels:
       app: alphonsedev
