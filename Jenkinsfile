@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     withKubeConfig(credentialsId: 'eks_credential',) {
-                        sh 'kubectl apply -f deployment.yaml --v9' // Assuming your manifest file is named deployment.yaml
+                        sh 'kubectl apply -f deployment.yaml --v=debug' // Assuming your manifest file is named deployment.yaml
                     }
                 }
             }
